@@ -115,7 +115,7 @@
 
     $('#loadAllCustomers').click((e) => {
         $.ajax({
-            url:"http://localhost:8080/Application_1_Web_exploded/customer",
+            url:"http://localhost:8080/Application_1_war_exploded/customer",
             type:"GET",
             success:(response)=>{
                 console.log(response);
@@ -142,7 +142,7 @@
 
     $('#saveCustomer').click((e)=>{
         $.ajax({
-            url: "http://localhost:8080/Application_1_Web_exploded/customer",
+            url: "http://localhost:8080/Application_1_war_exploded/customer",
             type: "POST",
             success:(res)
         })

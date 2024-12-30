@@ -1,8 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="Application_1:Web exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/Application_1_Web_exploded</output-path>
+  <artifact type="exploded-war" name="Application_1:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Application_1_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="Application_1/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="Application_1" />
@@ -12,6 +11,7 @@
           <element id="library" level="project" name="javax.json-1.1.4" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="Application_1/web/Web" />
       <element id="module-output" name="Application_1" />
     </root>
   </artifact>
