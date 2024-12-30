@@ -34,7 +34,7 @@ const autoGenerateItemNextId = () => {
     });
 };
 
-/*===========================================================================================================================*/
+/*======================================================= when page load run====================================================================*/
 $(document).ready(function (){
     autoGenerateItemNextId();
     loadItemTable();
@@ -77,7 +77,36 @@ const loadItemTable = () => {
     });
 }
 
-/*===========================================================================================================================*/
+const clearFieldItem = () => {
+    $('#item_name').val("");
+    $('#item_price').val("");
+    $('#item_qty').val("");
+    loadItemTable();
+    loadAllItem();
+    autoGenerateItemNextId();
+}
+
+/*============================================= Save Item==============================================================================*/
+$('#addItemBtn').click(() =>{
+    const id = $('#item_id').val();
+    const name = $('#item_name').val();
+    const price = $('#item_price').val();
+    const qty = $('#item_qty').val();
+
+    $.ajax({
+        url: `http://localhost:8080/Application_1_war_exploded/item?item_id=${id}&item_name=${name}&item_price=${price}&item_qty=${qty}`,
+        type: "POST",
+
+        success: (res) => alert("Item saved successfully!"),
+        error: (err) => alert("Item Saved not successfully!"),
+    });
+    clearFieldItem();
+    loadItemTable();
+    loadAllItem();
+    autoGenerateItemNextId();
+
+});
+
 /*===========================================================================================================================*/
 /*===========================================================================================================================*/
 /*===========================================================================================================================*/

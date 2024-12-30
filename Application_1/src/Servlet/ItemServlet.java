@@ -11,10 +11,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * Author: vishmee
@@ -64,7 +61,38 @@ PrintWriter out = resp.getWriter();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+       try {
+           Connection connection = getConnection();
+           String item_id = req.getParameter("item_id");
+           String item_name = req.getParameter("item_name");
+           String item_price = req.getParameter("item_price");
+           String item_qty = req.getParameter("item_qty");
+
+           System.out.println(item_id);
+           System.out.println(item_name);
+           System.out.println(item_price);
+           System.out.println(item_qty);
+
+           if (item_id == null || item_id.isEmpty() && item_name == null || item_name.isEmpty() && item_price == null || item_price.isEmpty() && item_qty == null || item_qty.isEmpty()) {
+               resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+               resp.getWriter().write("{\"error\" : \"ID is required..!\"}");
+           }else{
+               String query = "insert into item values(?,?,?,?)";
+               PreparedStatement preparedStatement = connection.prepareStatement(query);
+               preparedStatement.setString(1, item_id);
+               preparedStatement.setString(2, item_name);
+               preparedStatement.setString(3, item_price);
+               preparedStatement.setString(4, item_qty);
+
+               preparedStatement.executeUpdate();
+               resp.setStatus(HttpServletResponse.SC_CREATED);
+               resp.getWriter().write("{\"message\" : \"item Save successful\"}");
+           }
+
+
+       } catch (Exception e) {
+           throw new RuntimeException(e);
+       }
     }
 
     @Override

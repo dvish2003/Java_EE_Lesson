@@ -89,7 +89,7 @@ public class CustomerServlet extends HttpServlet {
 
                 preparedStatement.executeUpdate();
                 resp.setStatus(HttpServletResponse.SC_CREATED);
-                resp.getWriter().write("{\"message\" : \"Student update successful\"}");
+                resp.getWriter().write("{\"message\" : \"Customer update successful\"}");
 
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -119,7 +119,7 @@ public class CustomerServlet extends HttpServlet {
 
                 preparedStatement.executeUpdate();
                 resp.setStatus(HttpServletResponse.SC_CREATED);
-                resp.getWriter().write("{\"message\" : \"Student Save successful\"}");
+                resp.getWriter().write("{\"message\" : \"Customer Save successful\"}");
 
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -145,7 +145,7 @@ public class CustomerServlet extends HttpServlet {
                 preparedStatement.setString(1, id);
                 preparedStatement.executeUpdate();
                 resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
-                resp.getWriter().write("{\"message\" : \"Student Save successful\"}");
+                resp.getWriter().write("{\"message\" : \"Customer Save successful\"}");
 
             }
 
