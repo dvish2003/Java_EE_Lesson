@@ -172,5 +172,12 @@ name varchar(30),
 address varchar(50)
 );
 
+Create table item(
+item_id varchar(5) primary key,
+item_name varchar(30),
+item_price int(10),
+item_qty int(10)
+);
+
 
 */
