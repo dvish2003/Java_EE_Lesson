@@ -40,6 +40,13 @@ $(document).ready(function (){
     autoGenerateNextId();
     loadTable();
     loadAllCustomers();
+    autoGenerateItemNextId();
+/*
+    loadItemTable();
+*/
+/*
+    loadAllItem();
+*/
 })
 
 const clearField = () => {
