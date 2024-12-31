@@ -29,7 +29,7 @@ public class ItemServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-PrintWriter out = resp.getWriter();
+        PrintWriter out = resp.getWriter();
         try {
           Connection connection = getConnection();
           ResultSet rs = connection.createStatement().executeQuery("select * from item");

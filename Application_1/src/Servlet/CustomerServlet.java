@@ -162,21 +162,52 @@ public class CustomerServlet extends HttpServlet {
 
 
 /*
-Create database Shop;
+-- Create the Shop database
+CREATE DATABASE Shop;
 
-Use Shop;
+-- Use the Shop database
+USE Shop;
 
-Create table customer(
-id varchar(5) primary key,
-name varchar(30),
-address varchar(50)
+-- Create the Customer table
+CREATE TABLE customer (
+    id VARCHAR(5) PRIMARY KEY,  -- Corrected column name to match references
+    name VARCHAR(30),
+    address VARCHAR(50)
 );
 
-Create table item(
-item_id varchar(5) primary key,
-item_name varchar(30),
-item_price int(10),
-item_qty int(10)
+-- Create the Item table
+CREATE TABLE item (
+    item_id VARCHAR(5) PRIMARY KEY,
+    item_name VARCHAR(30),
+    item_price INT,
+    item_qty INT
+);
+
+-- Create the Payment table
+CREATE TABLE payment (
+    payment_id VARCHAR(10) PRIMARY KEY,
+    payment_amount INT NOT NULL,
+    payment_date DATE NOT NULL
+);
+
+-- Create the Order table
+CREATE TABLE orders (  -- Changed table name to 'orders' since 'order' is a reserved keyword in SQL
+    order_id VARCHAR(10) PRIMARY KEY,
+    id VARCHAR(5) NOT NULL,  -- Updated to match the length of customer_id in the customer table
+    payment_id VARCHAR(10) NOT NULL,
+    order_place_date DATE NOT NULL,  -- Corrected column name for clarity and consistency
+    FOREIGN KEY (id) REFERENCES customer(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (payment_id) REFERENCES payment(payment_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- Create the OrderDetails table
+CREATE TABLE order_details (  -- Changed table name to snake_case for consistency
+    item_id VARCHAR(5) NOT NULL,  -- Updated to match the length of item_id in the item table
+    order_id VARCHAR(10) NOT NULL,
+    qty INT NOT NULL,
+    PRIMARY KEY (item_id, order_id),  -- Added composite primary key
+    FOREIGN KEY (item_id) REFERENCES item(item_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 

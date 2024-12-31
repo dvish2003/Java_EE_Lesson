@@ -4,14 +4,14 @@ let select_customer_row = null;
 const generateNextId = (customers) => {
     let maxId = 0;
     customers.forEach(customer => {
-        const numericPart = parseInt(customer.id.substring(1)); // Extract numeric part
+        const numericPart = parseInt(customer.id.substring(1));
         if (numericPart > maxId) {
             maxId = numericPart;
         }
     });
 
     const nextNumericId = maxId + 1;
-    return `C${nextNumericId.toString().padStart(3, '0')}`; // Format as C001, C002, etc.
+    return `C${nextNumericId.toString().padStart(3, '0')}`;
 };
 
 const autoGenerateNextId = () => {
@@ -166,3 +166,14 @@ $('#customerTableBody').on('click','tr',function (){
 
 })
 /*===========================================================================================================*/
+
+
+
+/*===========================================================================================================*/
+/*===========================================================================================================*/
+/*===========================================================================================================*/
+/*
+$("#addToCart").on('click', function() {
+
+
+});*/
