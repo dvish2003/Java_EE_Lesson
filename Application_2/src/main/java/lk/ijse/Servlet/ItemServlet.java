@@ -1,4 +1,4 @@
-package Servlet;
+package lk.ijse.Servlet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -158,3 +158,110 @@ public class ItemServlet extends HttpServlet {
 
 
 }
+/*
+Customer entity atribute id,name,address (one to many with order)
+item entity item_id,item_name,item_price,item_qty (Many to Many with Order)
+Order entity Customer_id,OrderID,OrderDate (one to one payment)
+OrderDetail accociate entity item_id,order_id,qty (Item and order entity accociate table)
+Payment entity payment_id,order_id,amout,date
+
+create entity use hbernate add input anotaion,primary key and forign key and cascade
+
+import jakarta.persistence.*;
+import java.util.*;
+
+@Entity
+class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private String address;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Order> orders = new ArrayList<>();
+
+    // Getters and Setters
+}
+
+@Entity
+class Item {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long itemId;
+
+    private String itemName;
+    private Double itemPrice;
+    private Integer itemQty;
+
+    @ManyToMany(mappedBy = "items")
+    private List<Order> orders = new ArrayList<>();
+
+    // Getters and Setters
+}
+
+@Entity
+class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long orderId;
+
+    private Date orderDate;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Payment payment;
+
+    @ManyToMany
+    @JoinTable(
+        name = "order_detail",
+        joinColumns = @JoinColumn(name = "order_id"),
+        inverseJoinColumns = @JoinColumn(name = "item_id")
+    )
+    private List<Item> items = new ArrayList<>();
+
+    // Getters and Setters
+}
+
+@Entity
+class OrderDetail {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private Integer qty;
+
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    // Getters and Setters
+}
+
+@Entity
+class Payment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long paymentId;
+
+    private Double amount;
+    private Date date;
+
+    @OneToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    // Getters and Setters
+}
+
+
+
+*/

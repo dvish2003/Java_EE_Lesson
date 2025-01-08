@@ -16,7 +16,7 @@ const generateNextId = (customers) => {
 
 const autoGenerateNextId = () => {
     $.ajax({
-        url: "http://localhost:8080/Application_1_war_exploded/customer",
+        url: "http://localhost:8080/Application_2_war_exploded/customer",
         type: "GET",
         success: (response) => {
             console.log("Fetched customers:", response);
@@ -57,7 +57,7 @@ const clearField = () => {
 /*========================================= Load All Customer ======================================*/
 const loadAllCustomers = () => {
     $.ajax({
-        url: "http://localhost:8080/Application_1_war_exploded/customer",
+        url: "http://localhost:8080/Application_2_war_exploded/customer",
         type: "GET",
         success: (response) => {
             console.log(response);
@@ -99,7 +99,7 @@ $('#saveCustomer').click(() => {
     const address = $('#address').val();
 
     $.ajax({
-        url: "http://localhost:8080/Application_1_war_exploded/customer",
+        url: "http://localhost:8080/Application_2_war_exploded/customer",
         type: "POST",
         data: {id, name, address},
         success: (res) => alert("Customer saved successfully!"),
@@ -120,7 +120,7 @@ $('#updateCustomer').click(() =>{
     const address = $('#address').val();
 
     $.ajax({
-        url: `http://localhost:8080/Application_1_war_exploded/customer?id=${id}&name=${name}&address=${address}`,
+        url: `http://localhost:6060/JAVA_EE_POS_NEW_war_exploded/customer?id=${id}&name=${name}&address=${address}`,
         type: "PUT",
         /*
                     data: {id, name, address},
@@ -138,7 +138,7 @@ $('#deleteCustomer').click(() => {
     const id = $('#id').val();
 
     $.ajax({
-        url: `http://localhost:8080/Application_1_war_exploded/customer?id=${id}`,
+        url: `http://localhost:6060/JAVA_EE_POS_NEW_war_exploded/customerid=${id}`,
         type: "DELETE",
         success: (res) => alert("Customer deleted successfully!"),
         error: (err) => alert("Customer delete not successfully!"),

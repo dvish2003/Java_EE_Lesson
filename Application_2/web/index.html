@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Customer management</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" id="Customer-nav">Customer Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="Item-nav">Item Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="PlaceOrder-nav">Place Order</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+ <section id="CustomerSection">
+     <div class="container mt-5">
+
+         <!-- Customer Form -->
+         <div class="card my-4">
+             <div class="card-header">Enter Customer Details</div>
+             <div class="card-body">
+                 <form id="customerForm">
+                     <div class="row mb-3">
+                         <div class="col">
+                             <label for="id" class="form-label">ID</label>
+                             <input type="text" class="form-control" id="id" placeholder="ID" required readonly>
+                         </div>
+                         <div class="col">
+                             <label for="id" class="form-label">Name</label>
+                             <input type="text" class="form-control" id="name" placeholder="Name" required>
+                         </div>
+                     </div>
+                     <div class="row mb-3">
+                         <div class="col">
+                             <label for="address" class="form-label">Address</label>
+                             <input type="text" class="form-control" id="address" placeholder="Address" required>
+                         </div>
+
+                     </div>
+
+                     <button type="button" id="loadAllCustomers" class="btn btn-info">Load All Customers</button>
+                     <button type="button" id="saveCustomer" class="btn btn-primary ">Save Customer</button>
+                     <button type="button" id="updateCustomer" class="btn btn-warning ">Update Customer</button>
+                     <button type="button" id="deleteCustomer" class="btn btn-danger ">Delete Customer</button>
+                 </form>
+             </div>
+         </div>
+
+         <!-- Customer Table -->
+         <h3 class="mt-5">Customer List</h3>
+         <table class="table table-bordered table-striped mt-3 table">
+             <thead>
+             <tr>
+                 <th>id</th>
+                 <th>name</th>
+                 <th>address</th>
+             </tr>
+             </thead>
+             <tbody id="customerTableBody">
+             <!-- Customer rows will be added here -->
+             </tbody>
+         </table>
+     </div>
+ </section>
+
+<section id="ItemSection">
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Item Management</h1>
+        <div class="card p-4 mb-4">
+            <h5>Add / Update Item</h5>
+            <form id="itemForm">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label for="item_id" class="form-label">Item Code</label>
+                        <input type="text" class="form-control" id="item_id" placeholder="Enter Item Code" required readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="item_name" class="form-label">Item Name</label>
+                        <input type="text" class="form-control" id="item_name" placeholder="Enter Item Name" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="item_price" class="form-label">Item Price</label>
+                        <input type="number" class="form-control" id="item_price" placeholder="Enter Item Price" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="item_qty" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="item_qty" placeholder="Enter Quantity" required>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button type="button" class="btn btn-success me-2" id="addItemBtn">Add</button>
+                    <button type="button" class="btn btn-warning me-2" id="updateItemBtn">Update</button>
+                    <button type="button" class="btn btn-danger me-2" id="deleteItemBtn">Delete</button>
+                    <button type="button" class="btn btn-primary" id="loadAllItemsBtn">Load All</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card p-4">
+            <h5>Item List</h5>
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                <tr>
+                    <th>Item Code</th>
+                    <th>Item Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                </thead>
+                <tbody id="itemTableBody">
+                <!-- Item rows will be dynamically loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section id="placeOrderSection">
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Place Order</h1>
+
+        <!-- Form Section -->
+        <form id="orderForm" class="mb-5">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="customerId" class="form-label">Customer ID</label>
+                    <select id="customerId" class="form-select">
+                        <option selected disabled>Select Customer ID</option>
+                        <!-- Dynamic options here -->
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="customerName" class="form-label">Customer Name</label>
+                    <input type="text" id="customerName" class="form-control" placeholder="Customer Name" readonly>
+                </div>
+                <div class="col-md-4">
+                    <label for="orderId" class="form-label">Order ID</label>
+                    <input type="text" id="orderId" class="form-control" placeholder="Enter Order ID">
+                </div>
+            </div>
+
+            <div class="row g-3 mt-4">
+                <div class="col-md-4">
+                    <label for="itemId" class="form-label">Item ID</label>
+                    <select id="itemId" class="form-select">
+                        <option selected disabled>Select Item ID</option>
+                        <!-- Dynamic options here -->
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="itemName" class="form-label">Item Name</label>
+                    <input type="text" id="itemName" class="form-control" placeholder="Item Name" readonly>
+                </div>
+                <div class="col-md-4">
+                    <label for="itemPrice" class="form-label">Price</label>
+                    <input type="number" id="itemPrice" class="form-control" placeholder="Item Price" readonly>
+                </div>
+            </div>
+
+            <div class="row g-3 mt-4">
+                <div class="col-md-4">
+                    <label for="availableQty" class="form-label">Available Quantity</label>
+                    <input type="number" id="availableQty" class="form-control" placeholder="Available Qty" readonly>
+                </div>
+                <div class="col-md-4">
+                    <label for="buyingQty" class="form-label">Buying Quantity</label>
+                    <input type="number" id="buyingQty" class="form-control" placeholder="Enter Buying Qty">
+                </div>
+                <div class="col-md-4">
+                    <label for="paymentId" class="form-label">Payment ID</label>
+                    <input type="text" id="paymentId" class="form-control" placeholder="Enter Payment ID">
+                </div>
+            </div>
+
+            <div class="row g-3 mt-4">
+                <div class="col-md-4">
+                    <label for="orderDate" class="form-label">Order Date</label>
+                    <input type="date" id="orderDate" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label for="total" class="form-label">Total</label>
+                    <input type="number" id="total" class="form-control" placeholder="Total" readonly>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <button type="button" id="addToCart" class="btn btn-success me-2">Add to Cart</button>
+                <button type="button" id="placeOrder" class="btn btn-primary">Place Order</button>
+            </div>
+        </form>
+
+        <!-- Cart Table -->
+        <div class="card p-4">
+            <h5>Cart Items</h5>
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                <tr>
+                    <th>Item ID</th>
+                    <th>Item Name</th>
+                    <th>Price</th>
+                    <th>Buying Qty</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody id="cartTableBody">
+                <!-- Dynamic rows here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script src="assets/js/jquery-3.7.1.min.js"></script>
+
+
+<script>
+    /*============================= Page Load =========================================*/
+        document.getElementById("CustomerSection").style.display = "none";
+        document.getElementById("ItemSection").style.display = "none";
+        document.getElementById("placeOrderSection").style.display = "none";
+
+        document.getElementById("Customer-nav").addEventListener("click", function () {
+        document.getElementById("CustomerSection").style.display = "block";
+        document.getElementById("ItemSection").style.display = "none";
+        document.getElementById("placeOrderSection").style.display = "none";
+
+        });
+
+        document.getElementById("Item-nav").addEventListener("click", function () {
+        document.getElementById("CustomerSection").style.display = "none";
+        document.getElementById("ItemSection").style.display = "block";
+        document.getElementById("placeOrderSection").style.display = "none";
+
+        });
+        document.getElementById("PlaceOrder-nav").addEventListener("click", function () {
+        document.getElementById("CustomerSection").style.display = "none";
+        document.getElementById("ItemSection").style.display = "none";
+        document.getElementById("placeOrderSection").style.display = "block";
+
+        });
+
+</script>
+<script type="module" src="assets/CustomerController.js"></script>
+<script type="module" src="assets/ItemController.js"></script>
+<script type="module" src="assets/PlaceOrder.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>

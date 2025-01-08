@@ -16,7 +16,7 @@ const generateNextIdItem = (items) => {
 
 const autoGenerateItemNextId = () => {
     $.ajax({
-        url: "http://localhost:8080/Application_1_war_exploded/item",
+        url: "http://localhost:6060/JAVA_EE_POS_NEW_war_exploded/item",
         type: "GET",
         success: (response) => {
             console.log("Fetched item:", response);
@@ -42,7 +42,7 @@ $(document).ready(function (){
 /*==================================================== Load All Item=======================================================================*/
 $('#loadAllItemsBtn').click((e) => {
     $.ajax({
-        url: "http://localhost:8080/Application_1_war_exploded/item",
+        url: "http://localhost:6060/JAVA_EE_POS_NEW_war_exploded/item",
         type: "GET",
         success: (response) => {
             console.log(response);
@@ -87,7 +87,7 @@ $('#addItemBtn').click(() =>{
     const qty = $('#item_qty').val();
 
     $.ajax({
-        url: `http://localhost:8080/Application_1_war_exploded/item?item_id=${id}&item_name=${name}&item_price=${price}&item_qty=${qty}`,
+        url: `http://localhost:6060/JAVA_EE_POS_NEW_war_exploded/item?item_id=${id}&item_name=${name}&item_price=${price}&item_qty=${qty}`,
         type: "POST",
 
         success: (res) => alert("Item saved successfully!"),
@@ -113,7 +113,7 @@ $('#updateItemBtn').click(() =>{
     const qty = $('#item_qty').val();
 
     $.ajax({
-        url: `http://localhost:8080/Application_1_war_exploded/item?item_id=${id}&item_name=${name}&item_price=${price}&item_qty=${qty}`,
+        url: `http://localhost:6060/JAVA_EE_POS_NEW_war_exploded/item?item_id=${id}&item_name=${name}&item_price=${price}&item_qty=${qty}`,
         type: "PUT",
 
         success: (res) => alert("Item Update successfully!"),
@@ -128,7 +128,7 @@ $('#deleteItemBtn').click(() => {
     const id = $('#item_id').val();
 
     $.ajax({
-        url: `http://localhost:8080/Application_1_war_exploded/item?item_id=${id}`,
+        url: `http://localhost:6060/JAVA_EE_POS_NEW_war_exploded/item?item_id=${id}`,
         type: "DELETE",
         success: (res) => alert("item deleted successfully!"),
         error: (err) => alert("item delete not successfully!"),
